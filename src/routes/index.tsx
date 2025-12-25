@@ -1,6 +1,7 @@
-import CandleStick from '@/components/CandleStick'
-import Table from '@/components/Table'
+import TradesTable from '@/components/TradesTable'
 import { createFileRoute } from '@tanstack/react-router'
+import tradesData from '@/data/homePage/trades.json'
+import { TRADES_COLUMN_DEFS } from '@/data/columnDefs'
 
 export const Route = createFileRoute('/')({
 	component: RouteComponent
@@ -8,13 +9,8 @@ export const Route = createFileRoute('/')({
 
 function RouteComponent() {
 	return (
-		<div className="p-4">
-			<h1 className="text-2xl font-bold mb-6">Financial Data Dashboard</h1>
-			<div className="space-y-4">
-				<Table />
-			</div>
-			Candle Stick Charts
-			<CandleStick height={500} title={'AAPL'} />
+		<div className="h-[calc(100vh-12rem)]">
+			<TradesTable trades={tradesData} columnDefs={TRADES_COLUMN_DEFS} />
 		</div>
 	)
 }

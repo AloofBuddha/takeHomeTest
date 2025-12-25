@@ -11,21 +11,21 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-import { Route as TableOverviewImport } from './routes/tableOverview'
-import { Route as CandleSticksImport } from './routes/candleSticks'
+import { Route as TableOverviewImport } from './routes/table-overview'
+import { Route as CandleSticksImport } from './routes/candle-sticks'
 import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
 const TableOverviewRoute = TableOverviewImport.update({
-  id: '/tableOverview',
-  path: '/tableOverview',
+  id: '/table-overview',
+  path: '/table-overview',
   getParentRoute: () => rootRoute,
 } as any)
 
 const CandleSticksRoute = CandleSticksImport.update({
-  id: '/candleSticks',
-  path: '/candleSticks',
+  id: '/candle-sticks',
+  path: '/candle-sticks',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,17 +46,17 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
-    '/candleSticks': {
-      id: '/candleSticks'
-      path: '/candleSticks'
-      fullPath: '/candleSticks'
+    '/candle-sticks': {
+      id: '/candle-sticks'
+      path: '/candle-sticks'
+      fullPath: '/candle-sticks'
       preLoaderRoute: typeof CandleSticksImport
       parentRoute: typeof rootRoute
     }
-    '/tableOverview': {
-      id: '/tableOverview'
-      path: '/tableOverview'
-      fullPath: '/tableOverview'
+    '/table-overview': {
+      id: '/table-overview'
+      path: '/table-overview'
+      fullPath: '/table-overview'
       preLoaderRoute: typeof TableOverviewImport
       parentRoute: typeof rootRoute
     }
@@ -67,29 +67,29 @@ declare module '@tanstack/react-router' {
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/candleSticks': typeof CandleSticksRoute
-  '/tableOverview': typeof TableOverviewRoute
+  '/candle-sticks': typeof CandleSticksRoute
+  '/table-overview': typeof TableOverviewRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
-  '/candleSticks': typeof CandleSticksRoute
-  '/tableOverview': typeof TableOverviewRoute
+  '/candle-sticks': typeof CandleSticksRoute
+  '/table-overview': typeof TableOverviewRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
-  '/candleSticks': typeof CandleSticksRoute
-  '/tableOverview': typeof TableOverviewRoute
+  '/candle-sticks': typeof CandleSticksRoute
+  '/table-overview': typeof TableOverviewRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/candleSticks' | '/tableOverview'
+  fullPaths: '/' | '/candle-sticks' | '/table-overview'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/candleSticks' | '/tableOverview'
-  id: '__root__' | '/' | '/candleSticks' | '/tableOverview'
+  to: '/' | '/candle-sticks' | '/table-overview'
+  id: '__root__' | '/' | '/candle-sticks' | '/table-overview'
   fileRoutesById: FileRoutesById
 }
 
@@ -116,18 +116,18 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/candleSticks",
-        "/tableOverview"
+        "/candle-sticks",
+        "/table-overview"
       ]
     },
     "/": {
       "filePath": "index.tsx"
     },
-    "/candleSticks": {
-      "filePath": "candleSticks.tsx"
+    "/candle-sticks": {
+      "filePath": "candle-sticks.tsx"
     },
-    "/tableOverview": {
-      "filePath": "tableOverview.tsx"
+    "/table-overview": {
+      "filePath": "table-overview.tsx"
     }
   }
 }
