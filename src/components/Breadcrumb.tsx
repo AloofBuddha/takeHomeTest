@@ -22,20 +22,15 @@ export default function BreadCrumb() {
 		)
 
 	return (
-		<div className="flex items-center text-gray-400 mx-4 cursor-pointer select-none space-x-2">
-			{breadcrumbs.length > 1 &&
-				breadcrumbs.map(({ label, href }, i) => (
-					<div key={href} className="flex items-center space-x-2">
-						<Link to={href}>
-							{i === 0 ? (
-								<HomeIcon className="hover:text-[#00458a] dark:group-hover:text-white -mr-2 size-10 rounded-[10px] p-2 text-gray-400 hover:bg-[#e7f3fd] dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white" />
-							) : (
-								<p className="flex hover:underline my-auto capitalize">{decodeURIComponent(label)}</p>
-							)}
-						</Link>
-						{i + 1 < breadcrumbs.length && <p>/</p>}
-					</div>
-				))}
+		<div className="flex items-center text-slate-500 dark:text-slate-400 space-x-2 text-sm">
+			{breadcrumbs.map(({ label, href }, i) => (
+				<div key={href} className="flex items-center space-x-2">
+					<Link to={href} className="hover:text-slate-900 dark:hover:text-slate-100 transition-colors flex items-center gap-1">
+						{i === 0 ? <HomeIcon className="w-4 h-4" /> : <span>{decodeURIComponent(label)}</span>}
+					</Link>
+					<span>/</span>
+				</div>
+			))}
 		</div>
 	)
 }
