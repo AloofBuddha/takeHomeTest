@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import type { AgChartInstance, AgFinancialChartOptions } from 'ag-charts-enterprise'
+import type { AgChartInstance, AgFinancialChartOptions, AgPriceVolumeChartType } from 'ag-charts-enterprise'
 import { AgFinancialCharts } from 'ag-charts-react'
 import { useIsDarkMode } from '@/stores/DarkModeStore'
 import type { SymbolId } from '@/config/candlestickConfig'
@@ -58,7 +58,7 @@ export default function CandleStick({ priceData, symbolId, title }: CandleStickP
 	const [options, setOptions] = useState<AgFinancialChartOptions>({
 		data: chartData,
 		title: { text: title },
-		chartType: 'candlestick',
+		chartType: 'candlestick' as AgPriceVolumeChartType,
 		navigator: true,
 		toolbar: true,
 		rangeButtons: true,
