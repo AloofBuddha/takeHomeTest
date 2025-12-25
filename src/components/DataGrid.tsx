@@ -1,10 +1,10 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import { AgGridReact } from 'ag-grid-react'
-import { colorSchemeDarkBlue, ColDef, GridOptions, RowStyle, RowClassParams, themeQuartz } from 'ag-grid-community'
+import { colorSchemeDarkBlue, themeQuartz } from 'ag-grid-community'
+import type { ColDef, GridOptions, RowStyle, RowClassParams } from 'ag-grid-community'
 import { useIsDarkMode } from '@/stores/DarkModeStore'
 import { cn } from '@/utils/cn'
 import { tableStyles } from '@/styles/commonStyles'
-import LoadingSpinner from './LoadingSpinner'
 import 'ag-grid-enterprise'
 import '@/styles/TradesTable.css'
 
@@ -46,15 +46,6 @@ export default function DataGrid({
 	const gridRef = useRef<AgGridReact>(null)
 	const isDarkMode = useIsDarkMode()
 	const theme = isDarkMode ? themeQuartz.withPart(colorSchemeDarkBlue) : themeQuartz
-	const [isLoading, setIsLoading] = useState(true)
-
-	useEffect(() => {
-		const timer = setTimeout(() => {
-			setIsLoading(false)
-		}, 500)
-
-		return () => clearTimeout(timer)
-	}, [])
 
 	const gridOptions: GridOptions = {
 		theme: theme,
@@ -217,14 +208,8 @@ export default function DataGrid({
 					{onTitleClick && <span className={tableStyles.expandIcon}>{isExpanded ? '⊟' : '⊞'}</span>}
 				</div>
 			)}
-			<div className={cn(height || 'flex-1 min-h-0', 'relative')}>
-				{isLoading && <LoadingSpinner message="Loading table..." />}
-				<div className={cn(
-					'h-full w-full transition-opacity duration-300',
-					isLoading ? 'opacity-0 pointer-events-none' : 'opacity-100'
-				)}>
-					<AgGridReact ref={gridRef} maintainColumnOrder={true} {...gridOptions} />
-				</div>
+			<div className={cn(height || 'flex-1 min-h-0')}>
+				<AgGridReact ref={gridRef} maintainColumnOrder={true} {...gridOptions} />
 			</div>
 		</div>
 	)
