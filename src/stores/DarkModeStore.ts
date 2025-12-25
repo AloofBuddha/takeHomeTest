@@ -1,4 +1,5 @@
 import { localStorageHelper } from '@/utils/localStorageHelper'
+import { getSystemPreference } from '@/utils/getSystemPreference'
 import { useEffect } from 'react'
 import { create } from 'zustand'
 
@@ -24,7 +25,14 @@ interface Actions {
 const getInitialDarkMode = () => {
 	// Also sets document class for dark mode on initial load
 	const { getNestedValue } = localStorageHelper('globalSettings')
-	const initialDarkMode = getNestedValue(['isDarkMode']) == undefined ? window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches : getNestedValue(['isDarkMode'])
+	const savedTheme = getNestedValue(['currentTheme']) || SystemTheme.SYSTEM
+
+	// If theme is 'system', check system preference (defaults to dark if unsupported)
+	// Otherwise use saved isDarkMode value
+	const initialDarkMode = savedTheme === SystemTheme.SYSTEM
+		? getSystemPreference()
+		: getNestedValue(['isDarkMode']) ?? getSystemPreference()
+
 	initialDarkMode ? document.documentElement.classList.add('dark') : document.documentElement.classList.remove('dark')
 	return initialDarkMode
 }
@@ -33,7 +41,7 @@ const useDarkModeStore = create<State & Actions>((set) => {
 	const { getNestedValue, setNestedValue } = localStorageHelper('globalSettings')
 	return {
 		isDarkMode: getInitialDarkMode(),
-		currentTheme: getNestedValue(['currentTheme']) || SystemTheme.DARK,
+		currentTheme: getNestedValue(['currentTheme']) || SystemTheme.SYSTEM,
 		actions: {
 			toggleDarkMode: () => {
 				set((state) => {

@@ -1,4 +1,5 @@
 import { SystemTheme, useCurrentTheme, setCurrentTheme, setDarkMode } from '@/stores/DarkModeStore'
+import { getSystemPreference } from '@/utils/getSystemPreference'
 import { ComputerDesktopIcon, MoonIcon, SunIcon } from '@heroicons/react/24/outline'
 
 export default function LightDarkModeToggle() {
@@ -6,7 +7,7 @@ export default function LightDarkModeToggle() {
 
 	const handleOnClickSystem = () => {
 		setCurrentTheme(SystemTheme.SYSTEM)
-		setDarkMode(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches)
+		setDarkMode(getSystemPreference())
 	}
 
 	const handleOnClickDark = () => {
