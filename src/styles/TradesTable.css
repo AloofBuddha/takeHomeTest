@@ -1,0 +1,13 @@
+/* AG Grid custom header and cell alignment overrides */
+
+/* Center-align header labels and make them flex to push filter icons right */
+.ag-header-cell-center .ag-header-cell-label {
+	flex: 1;
+	justify-content: center;
+}
+
+/* Right-align all cell content */
+.ag-right-aligned-cell {
+	text-align: right;
+	justify-content: flex-end;
+}
