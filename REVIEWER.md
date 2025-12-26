@@ -1,5 +1,8 @@
 # Engineers Gate Take-Home Test - Implementation Summary
 
+## Video Overview
+[Link to YouTube (private)](https://youtu.be/tCAZBG8dduY)
+
 ## Overview
 
 This implementation delivers a responsive, production-ready financial trading dashboard with AG Grid tables and AG Charts candlestick visualizations. The focus was on creating a maintainable codebase with excellent user experience, responsive design, and persistent user preferences.
